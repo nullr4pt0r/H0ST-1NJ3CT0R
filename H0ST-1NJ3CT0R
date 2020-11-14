@@ -1,0 +1,63 @@
+
+clear
+BRed='\033[1;31m'
+White='\033[1;37m'
+echo -e  "$Yellow" "                        INJECTOR                    "
+echo -e  "$Yellow" "                        |      |                    "  
+echo -e  "$Yellow" "                        |______|                    "
+echo -e  "$Yellow" "                H    H     |     s s s  T T T T T  "
+echo -e  "$Yellow" "                H    H   0 | 0  S     s     T      "
+echo -e  "$Yellow" "                H    H  0  |  0 s           T      "
+echo -e  "$Yellow" "                H HH H  0  |  0 s s  s s    T      "   
+echo -e  "$Yellow" "                H    H  0  |  0        s    T      " 
+echo -e  "$Yellow" "                H    H   0 | 0  s      s    T      "
+echo -e  "$Yellow" "                H    H     |     s s s      T      "
+echo " "
+echo " "
+echo -e  "$White"  "                      Created By - lazykay         " 
+
+#colors
+green='\033[0;32m' 
+NC='\033[0m'              #NoColor
+Yellow='\033[1;33m'
+LB='\033[0;34m'           #LightBlue
+cyan='\033[0;36m'
+BRed='\033[1;31m'
+BGreen='\033[1;32m'       # Green     
+BBlue='\033[1;34m'        # Blue
+
+#code
+echo " "
+echo " "
+read -p "enter the domain list:" file
+read -p "enter the place to save :" place
+read -p "enter your server ip or url for injection :" url
+cd $place 
+touch host.txt
+touch fhost.txt
+echo "..............This contains host header injected results........." > host.txt
+echo "..............This contains X-Forwarded-Host injected results......." >fhost.txt
+#loop
+while read dom 
+	do 
+	   echo " " 
+	   echo -e "${LB}............Domain.........${NC}"
+	   echo -e ${Yellow}" The Domain is $dom  "${NC} | tee -a  host.txt fhost.txt
+	   echo "  "
+	   curl -I -H "Host:$url" $dom >> host.txt 
+	   echo " "
+	   echo -e "${Yellow} Header Injection with X-Forwarded-Host ${NC}"
+	   echo " "
+	   curl -I -H "X-Forwarded-Host:$url"  $dom >>fhost.txt 
+	   sleep 3
+	   echo -e  "${LB}.............END.............${NC}"
+
+done <$file
+echo " "
+echo -e  "${cyan}Number of redirected urls with Host${NC}"
+cat host.txt | grep "300\|301\|302"
+echo " "
+echo -e "${cyan}Number of redirected host with Forwarded-Host${NC}" 
+cat fhost.txt | grep "300\|301\|302"
+echo " "
+echo -e "view ${BRed}$place${NC} for output files"
