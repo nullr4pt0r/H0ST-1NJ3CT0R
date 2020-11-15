@@ -1,5 +1,5 @@
 # H0ST-1NJ3CT0R
-Host Injector - A tool to qucik check domains &amp; sub domains for HOST HEADER INJECTION .
+Host Injector - A tool to quick check domains &amp; sub domains for HOST HEADER INJECTION .
 
 # USAGE
 1.Clone the repo https://github.com/johnthebug/H0ST-1NJ3CT0R.git
