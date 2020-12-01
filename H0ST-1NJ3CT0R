@@ -28,6 +28,7 @@ BGreen='\033[1;32m'       # Green
 BBlue='\033[1;34m'        # Blue
 
 #code
+mkdir /root/hoster
 echo " "
 echo " "
 read -p "enter the domain list:" file
@@ -62,4 +63,4 @@ echo " "
 echo -e "${cyan}Number of redirected host with Forwarded-Host${NC}" 
 cat $name.fhost.txt | grep "300\|301\|302"
 echo " "
-echo -e "view ${BRed}/root/hoster/${NC} for output files"
+echo -e "view ${BRed} /root/hoster/$name ${NC} for output files"
